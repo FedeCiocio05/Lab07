@@ -19,6 +19,7 @@ class Model:
         # TODO
 
     def get_epoche(self):
+
         """Restituisce la lista di tutte le epoche."""
         # TODO
 
