@@ -18,8 +18,8 @@ class MuseoDAO:
             return None
         else:
             cursor = cnx.cursor(dictionary=True)
-            # Query parametrizzata, richiamata ogni volta che l'utente cambia il numero di stelle nella casella dropdown
-            query = """SELECT * FROM musei"""
+            #
+            query = """SELECT * FROM museo"""
             cursor.execute(query)
             for row in cursor:
                 lst_musei.append(Museo(**row))
@@ -38,14 +38,13 @@ class MuseoDAO:
         else:
             cursor = cnx.cursor(dictionary=True)
             # Query parametrizzata, richiamata ogni volta che l'utente cambia il numero di stelle nella casella dropdown
-            query = """SELECT DISTINCT(epoca) FROM artefatti"""
+            query = """SELECT DISTINCT(epoca) FROM artefatto ORDER BY epoca"""
             cursor.execute(query)
             for row in cursor:
-                lst_epoche.append(Museo(**row))
+                lst_epoche.append(row['epoca'])
 
             cursor.close()
             cnx.close()
             return lst_epoche
 
-        #poi passo a model, poi controller e infine creo nel controller il metodo che popola il dropdown nel NB
     # TODO

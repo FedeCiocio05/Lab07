@@ -38,29 +38,33 @@ class View:
         # --- Sezione 2: Filtraggio ---
         self._ddMuseo = ft.Dropdown(label='Museo',
                                     options=[],
-                                    width=400,
+                                    width=300,
                                     hint_text="Select a museum",
-                                    # on_change =
+                                    on_change=self.controller.on_museo_change
                                     )
 
-        self.ddEpoca = ft.Dropdown(label='Epoca',
-                                   options=[],
-                                   width=200,
-                                   hint_text="Select a Epoca",
-                                   #on_change =,
+
+        self._ddEpoca = ft.Dropdown(label='Epoca',
+                                    options=[],
+                                    width=200,
+                                    hint_text="Select a Epoca",
+                                    on_change=self.controller.on_epoca_change
                                    )
 
-        self._row = ft.Row(controls=[self._ddMuseo, self.ddEpoca],
+        self.controller.popola_dropdown()
+
+        self._row = ft.Row(controls=[self._ddMuseo, self._ddEpoca],
                             alignment=ft.MainAxisAlignment.CENTER)
+
         # TODO
 
         # Sezione 3: Artefatti
         self._btnMostra = ft.ElevatedButton(text="Mostra Artefatti",
                                             width=150,
-                                            #on_click =
+                                            on_click = self.controller.on_mostra_artefatti
                                             )
 
-        self._lst_results = ft.ListView(expand=True, spacing=10, padding=20)
+        self._lst_results = ft.ListView(expand=True, spacing=10, padding=20, auto_scroll=True)
         # TODO
 
         # --- Toggle Tema ---
